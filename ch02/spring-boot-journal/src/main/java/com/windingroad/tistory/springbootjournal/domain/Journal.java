@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -19,14 +22,14 @@ public class Journal {
     private Date created;
     private String summary;
 
-//    @Transient
-//    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+    @Transient
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
     public Journal(String title, String summary, String date)
             throws ParseException {
         this.title = title;
         this.summary = summary;
-//        this.created = format.parse(date);
+        this.created = format.parse(date);
     }
 
     Journal() {
@@ -64,9 +67,9 @@ public class Journal {
         this.summary = summary;
     }
 
-//    public String getCreatedAsShort() {
-//        return format.format(created);
-//    }
+    public String getCreatedAsShort() {
+        return format.format(created);
+    }
 
     public String toString() {
         StringBuilder value = new StringBuilder("JournalEntry(");
@@ -76,8 +79,8 @@ public class Journal {
         value.append(title);
         value.append(",요약: ");
         value.append(summary);
-//        value.append(",작성일자: ");
-//        value.append(getCreatedAsShort());
+        value.append(",작성일자: ");
+        value.append(getCreatedAsShort());
         value.append(")");
         return value.toString();
     }
