@@ -1,0 +1,7 @@
+server:
+  ip: 192.168.3.5
+
+myapp:
+  name: 192.168.34.56
+  server-ip: 192.168.34.56
+  description: This is an example
