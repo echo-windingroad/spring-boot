@@ -3,20 +3,21 @@ package com.windingroad.tistory.domain;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class JournalEntry {
 
-    private String title;
-    private Date created;
-    private String summary;
+    private String  title;
+    private String  created;
+    private String  summary;
 
-    private final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+//    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public JournalEntry(String title, String summary, String date)
             throws ParseException {
         this.title = title;
         this.summary = summary;
-        this.created = format.parse(date);
+        this.created = date;
     }
 
     JournalEntry() {
@@ -30,19 +31,12 @@ public class JournalEntry {
         this.title = title;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
     public void setCreated(String date) throws ParseException {
-        Long _date = null;
-        try {
-            _date = Long.parseLong(date);
-            this.created = new Date(_date);
-            return;
-        } catch (Exception ex) {
-        }
-        this.created = format.parse(date);
+
     }
 
     public String getSummary() {
@@ -60,7 +54,7 @@ public class JournalEntry {
         value.append(",요약: ");
         value.append(summary);
         value.append(",작성일자: ");
-        value.append(format.format(created));
+        value.append(created);
         value.append(")");
         return value.toString();
     }
