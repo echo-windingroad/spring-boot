@@ -65,7 +65,7 @@ public class SpringBootWebApplicationTests {
         mockMvc.perform(get("/journal/all"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", iterableWithSize(4)))
+                .andExpect(jsonPath("$", iterableWithSize(5)))
                 .andExpect(jsonPath("$[0]['title']", containsString(SPRING_BOOT_MATCH)));
     }
 
